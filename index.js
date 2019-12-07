@@ -13,7 +13,7 @@ dotenv.config();
 app.use(express.json());
 
 //Route Middlewares
-app.use('/api', searchRoute);
+app.use('/images', searchRoute);
 
 
 app.listen(port, () => console.log('Listening on port 5000'));

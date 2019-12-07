@@ -4,7 +4,7 @@ const  axios = require('axios');
 
 
 
-router.post('/image-search',async(req,res) => {
+router.post('/search',async(req,res) => {
     const { error } = searchValidation(req.body);
     //Validation
     if(error) return res.status(400).send({
@@ -12,13 +12,14 @@ router.post('/image-search',async(req,res) => {
         message: error.details[0].message
     });
     let searchTerm = req.body.q;
+    let imageType = req.query.imageType;
     let config = {
         headers: { "Ocp-Apim-Subscription-Key": process.env.SubscriptionKey },
         params: { q : searchTerm,
-                "imageType": req.body.imageType},
+                "imageType": imageType},
       }
       console.log(searchTerm);
-      console.log(req.body.imageType);
+      console.log(imageType);
       
 
     await axios.get( process.env.endpoint , config ,
