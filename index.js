@@ -3,7 +3,6 @@ const app = express();
 const dotenv = require('dotenv');
 const port = process.env.PORT || 5000;
 
-
 //Import Routes
 const searchRoute = require('./routes/imageSearch');
 dotenv.config();
