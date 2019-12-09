@@ -16,13 +16,14 @@ router.post('/search', (req, res) => {
                     "count": req.query.count,
                     "offset" : req.query.offset,
                     "safeSearch": req.query.safeSearch,
-                    "mkt" : req.query.mkt
+                    "mkt" : req.query.mkt,
+                    "color" : req.query.color,
+                    "freshness" : req.query.freshness
                 },
       }
     axios.get( process.env.endpoint , config
     
     ).then(response => {
-        console.log(response.data);
         res.send(response.data); 
         
     }).catch(err => {

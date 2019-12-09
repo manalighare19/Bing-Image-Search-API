@@ -3,50 +3,62 @@
  The Bing Image Search API uses Bing's image search capabilities by sending search queries to the API, to get high-quality images. It provides images only as search results.
 
 ## Table of content
-* [Get Started](#get-started)
-    * [Image Search](#image-search)
-    * [Trending Images](#trending-images)
+
+* [Image Search](#image-search)
+* [Trending Images](#trending-images)
 * [References](#references)
 
-### Image search
-## URL
+## Image search
+### URL
 
   /images/search
 
-## Method
+### Method
   
   `POST` 
-
-## Request Header
-* `Ocp-Apim-Subscription-Key [String]` <br />
-  Required Subscription key which provides access to this API
   
-## Query Params
+### Query Parameters
 The following are the **optional** query parameters that a request may include. You must URL encode the query parameter values.
 
-   * `count=[UnsignedShort]` <br />
+   * `count = [UnsignedShort]` <br />
       The number of images to return in the response.  The default is 35. <br />
-   * `offset=[UnsignedShort]` <br />
+   * `offset = [UnsignedShort]` <br />
       The zero-based offset that indicates the number of images to skip before returning images. The default is 0. <br />
-   * `mkt=[String]` <br />
+   * `mkt = [String]` <br />
       The market where the results come from. Typically, mkt is the country where the user is making the request from. <br />
-   * `safeSearch=[String]` <br />
+   * `safeSearch = [String]` <br />
       Filter images for adult content. The possible filter values are Off, Moderate and strict. The default is Moderate.
-
+    
 ## Filter Query Params
 The following is the **optional** filter query parameter that you can use to filter the images that Bing returns. You must URL encode the query parameters. <br />
 
- `imageType=[String]` <br />
-  By default it will show all images. But you can Filter images by the following image types:
-  
-* AnimatedGif - return animated gif images
-* Clipart - Return only clip art images
-* Line - Return only line drawings
-* Photo - Return only photographs
+* `imageType = [String]` <br />
+  By default it will show all types images. But you can Filter images by the following image types:
+  * AnimatedGif - return animated gif images
+  * Clipart - Return only clip art images
+  * Line - Return only line drawings
+  * Photo - Return only photographs 
+<br /> 
+
+* `color = [String]` <br />
+    Following  color options are available:
+    * ColorOnly - Return color images
+    * Monochrome - Return black and white images
+<br />
+
+
+* `freshness = [String]` <br />
+    Following discovery options can be used to filter images
+    * Day - Return images discovered by Bing within the last 24 hours
+    * Week - Return images discovered by Bing within the last 7 days
+    * Month - Return images discovered by Bing within the last 30 days
+
+
+
    
 
 ## Data Params
-   `q=[String] [Required]` <br />
+   `q = [String] [Required]` <br />
     The user's search query term which cannot be empty. Use this parameter only with the Image Search API. Do not specify this parameter     when calling the Trending Images API.
 
 ## Success Response
@@ -117,27 +129,47 @@ The following is the **optional** filter query parameter that you can use to fil
   }
 ```
 
-### Trending Images
+## Trending Images
 
-## URL
+### URL
 
   /images/trending
 
-## Method
+### Method
   
   `POST` 
-## Request Header
-* `Ocp-Apim-Subscription-Key [String]` <br />
-  Required Subscription key which provides access to this API
   
-## Success Response
+### Success Response
 ```{
     "_type": "TrendingImages",
     "instrumentation": {
         "_type": "ResponseInstrumentation"
     },
-    "categories": [{}]
-  }
+    "categories": [
+        {
+            "title": "Popular people searches",
+            "tiles": [
+                {
+                    "query": {
+                        "text": "Kristin Davis",
+                        "displayText": "Kristin Davis",
+                        "webSearchUrl": "https://www.bing.com/images/search?q=Kristin+Davis&FORM=ISTRTH&id=77156A2ADB0FABE0EC1EEB3F5FABAFA00CD0CFE6&cat=Popular%20people%20searches&lpversion="
+                    },
+                    "image": {
+                        "thumbnailUrl": "https://tse2.mm.bing.net/th?id=OET.8194fb81c3c74271bbc1e97aecb345f6&pid=Api",
+                        "contentUrl": "http://i.dailymail.co.uk/i/pix/2009/09/13/article-0-05A905FC0000044D-180_468x532.jpg",
+                        "width": 468,
+                        "height": 532,
+                        "thumbnail": {
+                            "width": 468,
+                            "height": 532
+                        },
+                        "imageId": "77156A2ADB0FABE0EC1EEB3F5FABAFA00CD0CFE6"
+                    }
+                }
+        }..
+              
+    }
 ```
 
 ## References
