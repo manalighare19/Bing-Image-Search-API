@@ -1,18 +1,9 @@
 const router = require('express').Router();
-const {searchValidation} = require('../validation');
 const  axios = require('axios');
 
 
 //Image search
 router.post('/search', (req, res) => {
-    
-    const { error } = searchValidation(req.body);
-    //Validation
-    if(error) return res.status(400).send({
-        status : res.statusCode,
-        message: error.details[0].message
-    });
-
     let searchTerm = req.body.q;
     let config = {
         headers:{ 
@@ -28,16 +19,27 @@ router.post('/search', (req, res) => {
                     "mkt" : req.query.mkt
                 },
       }
-    console.log(searchTerm);
-     
     axios.get( process.env.endpoint , config
     
     ).then(response => {
-        res.send(response.data);  
+        console.log(response.data);
+        res.send(response.data); 
         
     }).catch(err => {
         console.log(err);
+        if(err.response.status == 400){
+            res.send({
+                "errors":err.response.data.errors
+            });
+        }
+        else if(err.response.status == 401){
+            res.send(err.response.data);
+        }
+        else if(err.response.status == 500){
+            res.send("Unexpected server error");
+        }
 
+       
     })
 });
 
