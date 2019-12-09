@@ -6,6 +6,7 @@
 
 * [Image Search](#image-search)
 * [Trending Images](#trending-images)
+* [Image Insights](#insights-images)
 * [References](#references)
 
 ## Image search
@@ -15,7 +16,7 @@
 
 ### Method
   
-  `POST` 
+  `GET` 
   
 ### Query Parameters
 The following are the **optional** query parameters that a request may include. You must URL encode the query parameter values.
@@ -137,7 +138,7 @@ The following is the **optional** filter query parameter that you can use to fil
 
 ### Method
   
-  `POST` 
+  `GET` 
   
 ### Success Response
 ```{
@@ -172,6 +173,8 @@ The following is the **optional** filter query parameter that you can use to fil
     }
 ```
 
-## References
+## Image Insights
+
+### References
 - [Image search API Documentation](https://docs.microsoft.com/en-us/rest/api/cognitiveservices-bingsearch/bing-images-api-v7-reference#headers)
 
