@@ -1,8 +1,9 @@
-**Bing Image Search API**
+## Bing Image Search API
 ----
- The Bing Image Search API uses Bing's image search capabilities to get high -quality images according to user's search query. It provides images only as search results. 
+ The Bing Image Search API uses Bing's image search capabilities to get high-quality images according to user's search query. This API have three endpoints, which includes image search, get trending images and get insights about the specific image.
 
 ## Table of content
+----
 
 * [Image Search](#image-search)
 * [Trending Images](#trending-images)
@@ -10,22 +11,22 @@
 * [References](#references)
 
 ## Image search
-----
+---
+This API returns images which are related to the search term. In this API user can search or filters images according to different query parameters which are mentioned below.
 
-
-### URL
+#### URL
 
   /images/search
 
-### Method
+#### Method
   
   `POST` 
   
-### Query Parameters
+#### Query Parameters
 The following are the **optional** query parameters that a request may include. You must URL encode the query parameter values.
 
    * `count = [UnsignedShort]` <br />
-      The number of images to return in the response.  The default is 35. <br />
+      The number of images to return in the response. The default is 35. <br />
    * `offset = [UnsignedShort]` <br />
       The zero-based offset that indicates the number of images to skip before returning images. The default is 0. <br />
    * `mkt = [String]` <br />
@@ -33,8 +34,8 @@ The following are the **optional** query parameters that a request may include. 
    * `safeSearch = [String]` <br />
       Filter images for adult content. The possible filter values are Off, Moderate and strict. The default is Moderate.
     
-## Filter Query Params
-The following is the **optional** filter query parameter that you can use to filter the images that Bing returns. You must URL encode the query parameters. <br />
+#### Filter Query Params
+The following is the **optional** filter query parameter that you can use to filter the images. You must URL encode the query parameters. <br />
 
 * `imageType = [String]` <br />
   By default it will show all types images. But you can Filter images by the following image types:
@@ -57,14 +58,14 @@ The following is the **optional** filter query parameter that you can use to fil
     * Week - Return images discovered by Bing within the last 7 days
     * Month - Return images discovered by Bing within the last 30 days
 
-## Data Params
+#### Data Params
    `q = [String] [Required]` <br />
     The user's search query term which cannot be empty. Use this parameter only with the Image Search API. Do not specify this parameter     when calling the Trending Images API.
 
-## Success Response
+#### Success Response
 
   * **Status Code:** 200 <br />
-   ```{ 
+   ```
    "_type": "Images",
     "instrumentation": {
         "_type": "ResponseInstrumentation"
@@ -109,11 +110,11 @@ The following is the **optional** filter query parameter that you can use to fil
             "imageId": "F95CA92C6DCC72FED1FF4DB5561D84907B9CF0C4",
              "accentColor": "C66E05"
         },...]
-     }
+     
    ```
-    
- ## Error Responses
- ```{
+
+ #### Error Responses
+ ```
  {
     status: 400,
     description: One of the query parameters is missing or not valid.
@@ -126,21 +127,23 @@ The following is the **optional** filter query parameter that you can use to fil
     status: 500,
     description: Unexpected server error.
 }
-  }
 ```
 
 ## Trending Images
+----
+This API returns images which are trending based on search requests. The response have different categories of the images, such as popular wallpaper searches or popular people searches.
 
-### URL
+
+#### URL
 
   /images/trending
 
-### Method
+#### Method
   
   `GET` 
   
-### Success Response
-```{
+#### Success Response
+```
     "_type": "TrendingImages",
     "instrumentation": {
         "_type": "ResponseInstrumentation"
@@ -169,19 +172,70 @@ The following is the **optional** filter query parameter that you can use to fil
                 }
         }..
               
-    }
+    
+```
+
+#### Error Response
+ ```
+{
+    status: 401,
+    description: The subscription key is missing or is not valid.
+},
+{
+    status: 500,
+    description: Unexpected server error.
+}
 ```
 
 ## Image Insights
+----
+This API returns insights about an image after providing insights token from image search API. The insights includes such as webpages, display text or captions.
 
-### URL
+#### URL
 
   /images/details
 
-### Method
+#### Method
   
   `GET` 
 
-### References
+#### Request Parameter
+ * `insightsToken = [String] [Required]` <br />
+    It is the token from a Image search API call. <br />
+
+* `query = [String] [optional]` <br />
+    Search term from the user.<br />
+
+#### Success Response  
+```
+{
+   "_type": "ImageInsights",
+    "instrumentation": {
+        "_type": "ResponseInstrumentation"
+    },
+    "imageInsightsToken": "ccid_oTMZWDCL*mid_31856F9A330F23BFC22671EF2E44F35B3DA43553*simid_608035130687817356",
+    "bestRepresentativeQuery": {
+        "text": "Tom and Jerry Coloring Sheet",
+        "displayText": "Tom and Jerry Coloring Sheet",
+        "webSearchUrl": "https://www.bing.com/images/search?q=Tom+and+Jerry+Coloring+Sheet&id=31856F9A330F23BFC22671EF2E44F35B3DA43553&FORM=IDBQDM"
+    },
+    "imageCaption": {
+        "caption": "Tom and Jerry  New cartoons coming soon!",
+        "dataSourceUrl": "https://www.pinterest.com/angelnegro30/tomjerry/",
+        "relatedSearches": []
+    }
+}
+```
+
+#### Error Response
+```
+{
+    "message": "Access denied. Insights token not found.",
+    description: Insight token is required parameter for this API
+}
+
+```
+
+## References
 - [Image search API Documentation](https://docs.microsoft.com/en-us/rest/api/cognitiveservices-bingsearch/bing-images-api-v7-reference#headers)
 
