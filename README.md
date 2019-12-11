@@ -1,9 +1,8 @@
 ## Bing Image Search API
-----
+
  The Bing Image Search API uses Bing's image search capabilities to get high-quality images according to user's search query. This API have three endpoints, which includes image search, get trending images and get insights about the specific image.
 
 ## Table of content
-----
 
 * [Image Search](#image-search)
 * [Trending Images](#trending-images)
@@ -11,18 +10,18 @@
 * [References](#references)
 
 ## Image search
----
+
 This API returns images which are related to the search term. In this API user can search or filters images according to different query parameters which are mentioned below.
 
-#### URL
+### URL
 
   /images/search
 
-#### Method
+### Method
   
   `POST` 
   
-#### Query Parameters
+### Query Parameters
 The following are the **optional** query parameters that a request may include. You must URL encode the query parameter values.
 
    * `count = [UnsignedShort]` <br />
@@ -34,7 +33,7 @@ The following are the **optional** query parameters that a request may include. 
    * `safeSearch = [String]` <br />
       Filter images for adult content. The possible filter values are Off, Moderate and strict. The default is Moderate.
     
-#### Filter Query Params
+### Filter Query Params
 The following is the **optional** filter query parameter that you can use to filter the images. You must URL encode the query parameters. <br />
 
 * `imageType = [String]` <br />
@@ -58,11 +57,11 @@ The following is the **optional** filter query parameter that you can use to fil
     * Week - Return images discovered by Bing within the last 7 days
     * Month - Return images discovered by Bing within the last 30 days
 
-#### Data Params
+### Data Params
    `q = [String] [Required]` <br />
     The user's search query term which cannot be empty. Use this parameter only with the Image Search API. Do not specify this parameter     when calling the Trending Images API.
 
-#### Success Response
+### Success Response
 
   * **Status Code:** 200 <br />
    ```
@@ -113,7 +112,7 @@ The following is the **optional** filter query parameter that you can use to fil
      
    ```
 
- #### Error Responses
+ ### Error Responses
  ```
  {
     status: 400,
@@ -130,19 +129,19 @@ The following is the **optional** filter query parameter that you can use to fil
 ```
 
 ## Trending Images
-----
+
 This API returns images which are trending based on search requests. The response have different categories of the images, such as popular wallpaper searches or popular people searches.
 
 
-#### URL
+### URL
 
   /images/trending
 
-#### Method
+### Method
   
   `GET` 
   
-#### Success Response
+### Success Response
 ```
     "_type": "TrendingImages",
     "instrumentation": {
@@ -175,7 +174,7 @@ This API returns images which are trending based on search requests. The respons
     
 ```
 
-#### Error Response
+### Error Response
  ```
 {
     status: 401,
@@ -188,25 +187,25 @@ This API returns images which are trending based on search requests. The respons
 ```
 
 ## Image Insights
-----
+
 This API returns insights about an image after providing insights token from image search API. The insights includes such as webpages, display text or captions.
 
-#### URL
+### URL
 
   /images/details
 
-#### Method
+### Method
   
   `GET` 
 
-#### Request Parameter
+### Request Parameter
  * `insightsToken = [String] [Required]` <br />
     It is the token from a Image search API call. <br />
 
 * `query = [String] [optional]` <br />
     Search term from the user.<br />
 
-#### Success Response  
+### Success Response  
 ```
 {
    "_type": "ImageInsights",
@@ -227,7 +226,7 @@ This API returns insights about an image after providing insights token from ima
 }
 ```
 
-#### Error Response
+### Error Response
 ```
 {
     "message": "Access denied. Insights token not found.",
