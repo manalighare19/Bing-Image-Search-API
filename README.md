@@ -1,6 +1,6 @@
 **Bing Image Search API**
 ----
- The Bing Image Search API uses Bing's image search capabilities by sending search queries to the API, to get high-quality images. It provides images only as search results.
+ The Bing Image Search API uses Bing's image search capabilities to get high -quality images according to user's search query. It provides images only as search results. 
 
 ## Table of content
 
@@ -10,13 +10,16 @@
 * [References](#references)
 
 ## Image search
+----
+
+
 ### URL
 
   /images/search
 
 ### Method
   
-  `GET` 
+  `POST` 
   
 ### Query Parameters
 The following are the **optional** query parameters that a request may include. You must URL encode the query parameter values.
@@ -53,10 +56,6 @@ The following is the **optional** filter query parameter that you can use to fil
     * Day - Return images discovered by Bing within the last 24 hours
     * Week - Return images discovered by Bing within the last 7 days
     * Month - Return images discovered by Bing within the last 30 days
-
-
-
-   
 
 ## Data Params
    `q = [String] [Required]` <br />
@@ -174,6 +173,14 @@ The following is the **optional** filter query parameter that you can use to fil
 ```
 
 ## Image Insights
+
+### URL
+
+  /images/details
+
+### Method
+  
+  `GET` 
 
 ### References
 - [Image search API Documentation](https://docs.microsoft.com/en-us/rest/api/cognitiveservices-bingsearch/bing-images-api-v7-reference#headers)
