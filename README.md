@@ -9,11 +9,15 @@
 * [Image Insights](#insights-images)
 * [References](#references)
 
+#### Base URL
+
+`bingimagesearchapi.digital:3000`
+
 ## Image search
 
 This API returns images which are related to the search term. In this API user can search or filters images according to different query parameters which are mentioned below.
 
-### URL
+### Endpoint
 
   /images/search
 
@@ -133,7 +137,7 @@ The following is the **optional** filter query parameter that you can use to fil
 This API returns images which are trending based on search requests. The response have different categories of the images, such as popular wallpaper searches or popular people searches.
 
 
-### URL
+### Endpoint
 
   /images/trending
 
@@ -190,7 +194,7 @@ This API returns images which are trending based on search requests. The respons
 
 This API returns insights about an image after providing insights token from image search API. The insights includes such as webpages, display text or captions.
 
-### URL
+### Endpoint
 
   /images/details
 
